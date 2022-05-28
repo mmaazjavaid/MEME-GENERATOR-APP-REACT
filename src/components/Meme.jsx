@@ -4,14 +4,18 @@ import memesData from "../memesData"
 export default function Meme() {
 
 
-    const [isImportant,setisImportant]= useState("Get a new meme image 🖼");
-    const [counter,setCounter]=useState(0);
-    
-    const incrementCounter=()=>{
-        setCounter(prevCounter=> prevCounter+1);
-    }
-    const decrementCounter=()=>{
-        setCounter(prevCounter=> prevCounter-1);
+    // const [isImportant,setisImportant]= useState("Get a new meme image 🖼");
+    // const [counter,setCounter]=useState(0);
+
+
+
+
+    const [memeImage,setmemeImage]=useState("");
+
+    const handleMemeImage=()=>{
+        var {url} = memesData.data.memes[Math.floor(Math.random()* memesData.data.memes.length)];
+
+        setmemeImage(url);
     }
     
     
@@ -30,14 +34,13 @@ export default function Meme() {
                 />
                 <button 
                     className="form--button"
-                    
+                    onClick={handleMemeImage}
                 >
-                 {counter}   
+                 Get a new meme image 🖼  
                 </button>
                 
             </div>
-            <button onClick={incrementCounter}>increment</button>
-            <button onClick={decrementCounter}>decrement</button>
+            <img className="meme--image" src={memeImage} alt="memeImage"  />
         </main>
     )
 }
