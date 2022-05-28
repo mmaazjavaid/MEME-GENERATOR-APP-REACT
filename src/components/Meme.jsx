@@ -1,12 +1,23 @@
 import React from "react"
+import memesData from "../memesData"
 
 export default function Meme() {
-    const handleSubmit=()=>{
-        console.log("hello world");
+    /**
+     * Challenge: Get a random image from the `memesData` array
+     * when the "new meme image" button is clicked.
+     * 
+     * Log the URL of the image to the console. (Don't worry
+     * about displaying the image yet)
+     */
+    const handleClick=()=>{
+        var obj = memesData.data.memes[Math.floor(Math.random()*memesData.data.memes.length)];
+        console.log(obj);
     }
+    
+    
     return (
         <main>
-            <form className="form">
+            <div className="form">
                 <input 
                     type="text"
                     placeholder="Top text"
@@ -19,11 +30,11 @@ export default function Meme() {
                 />
                 <button 
                     className="form--button"
-                    onClick={handleSubmit}
+                    onClick={handleClick}
                 >
                     Get a new meme image 🖼
                 </button>
-            </form>
+            </div>
         </main>
     )
 }
