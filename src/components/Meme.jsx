@@ -1,17 +1,17 @@
-import React from "react"
+import React,{useState} from "react"
 import memesData from "../memesData"
 
 export default function Meme() {
-    /**
-     * Challenge: Get a random image from the `memesData` array
-     * when the "new meme image" button is clicked.
-     * 
-     * Log the URL of the image to the console. (Don't worry
-     * about displaying the image yet)
-     */
-    const handleClick=()=>{
-        var obj = memesData.data.memes[Math.floor(Math.random()*memesData.data.memes.length)];
-        console.log(obj);
+
+
+    const [isImportant,setisImportant]= useState("Get a new meme image 🖼");
+    const [counter,setCounter]=useState(0);
+    
+    const incrementCounter=()=>{
+        setCounter(prevCounter=> prevCounter+1);
+    }
+    const decrementCounter=()=>{
+        setCounter(prevCounter=> prevCounter-1);
     }
     
     
@@ -30,11 +30,14 @@ export default function Meme() {
                 />
                 <button 
                     className="form--button"
-                    onClick={handleClick}
+                    
                 >
-                    Get a new meme image 🖼
+                 {counter}   
                 </button>
+                
             </div>
+            <button onClick={incrementCounter}>increment</button>
+            <button onClick={decrementCounter}>decrement</button>
         </main>
     )
 }
