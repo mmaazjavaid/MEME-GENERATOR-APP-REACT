@@ -1,21 +1,26 @@
 import React,{useState} from "react"
 import memesData from "../memesData"
-
+import ImageContainer from "./ImageContainer"
 export default function Meme() {
 
 
-    // const [isImportant,setisImportant]= useState("Get a new meme image 🖼");
-    // const [counter,setCounter]=useState(0);
+    const [meme,setMeme]=useState({
+        topText:" ",
+        bottomText:" ",
+        randomImage:"http://i.imgflip.com/1bij.jpg"
+    })
 
-
-
-
-    const [memeImage,setmemeImage]=useState("");
+    const [allMemeImages,setallMemeImages]=useState(memesData)
 
     const handleMemeImage=()=>{
-        var {url} = memesData.data.memes[Math.floor(Math.random()* memesData.data.memes.length)];
-
-        setmemeImage(url);
+        var {url} = allMemeImages.data.memes[Math.floor(Math.random()* allMemeImages.data.memes.length)];
+        setMeme(prevMeme=>{
+            return {
+                ...prevMeme,
+                randomImage:url
+            }
+        })
+        
     }
     
     
@@ -40,7 +45,7 @@ export default function Meme() {
                 </button>
                 
             </div>
-            <img className="meme--image" src={memeImage} alt="memeImage"  />
+            <ImageContainer randomImage={meme.randomImage} />
         </main>
     )
 }
