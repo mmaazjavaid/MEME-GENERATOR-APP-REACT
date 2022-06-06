@@ -1,5 +1,6 @@
 import React,{useState} from "react"
 import memesData from "../memesData"
+import Button from "./Button"
 import ImageContainer from "./ImageContainer"
 export default function Meme() {
 
@@ -22,6 +23,7 @@ export default function Meme() {
         })
         
     }
+   
     
     
     return (
@@ -37,15 +39,10 @@ export default function Meme() {
                     placeholder="Bottom text"
                     className="form--input"
                 />
-                <button 
-                    className="form--button"
-                    onClick={handleMemeImage}
-                >
-                 Get a new meme image 🖼  
-                </button>
+                <Button on={false} onClick={handleMemeImage}  />
                 
             </div>
-            <ImageContainer randomImage={meme.randomImage} />
+            <ImageContainer  randomImage={meme.randomImage} />
         </main>
     )
 }
