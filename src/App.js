@@ -10,5 +10,5 @@ function App() {
     </div>
   );
 }
-
+//Conditional rendering thorouly done
 export default App;
