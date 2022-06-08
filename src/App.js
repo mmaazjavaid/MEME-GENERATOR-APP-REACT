@@ -4,53 +4,107 @@ import { useState } from 'react';
 import './index.css';
 
 function App() {
-  const [formdata,setformdata]= useState({
-    firstname:"",
-    lastname:"",
-    email:"",
-    comment:""
-  });
-  const handleChange=(event)=>{
-    setformdata(prevdata=>{
-      return{
-        ...prevdata,
-        [event.target.name]:event.target.value
-      }
+  const [formData, setFormData] = useState(
+    {
+        firstName: "", 
+        lastName: "", 
+        email: "", 
+        comments: "", 
+        isFriendly: true,
+        employment: ""
+    }
+)
+console.log(formData.employment)
+
+function handleChange(event) {
+    const {name, value, type, checked} = event.target
+    setFormData(prevFormData => {
+        return {
+            ...prevFormData,
+            [name]: type === "checkbox" ? checked : value
+        }
     })
-    
-  }
-  console.log(formdata);
-  
-  return (
-    // <div className="App">
-    //   <Header/>
-    //   <Meme/>
-    // </div>
+}
+
+return (
     <form>
-      <input
-      type="text"
-      placeholder="enter some input"
-      name='firstname'
-      onChange={handleChange} 
-      value={formdata.firstname}
+        <input
+            type="text"
+            placeholder="First Name"
+            onChange={handleChange}
+            name="firstName"
+            value={formData.firstName}
         />
         <input
-      type="text"
-      name='lastname'
-      placeholder="enter some input"
-      onChange={handleChange} 
-      value={formdata.lastname}
+            type="text"
+            placeholder="Last Name"
+            onChange={handleChange}
+            name="lastName"
+            value={formData.lastName}
         />
         <input
-      type="email"
-      name='email'
-      placeholder="enter some input"
-      onChange={handleChange}
-      value={formdata.email} 
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            name="email"
+            value={formData.email}
         />
-        <textarea onChange={handleChange} name='comment' value={formdata.comment} />
+        <textarea 
+            value={formData.comments}
+            placeholder="Comments"
+            onChange={handleChange}
+            name="comments"
+        />
+        <input 
+            type="checkbox" 
+            id="isFriendly" 
+            checked={formData.isFriendly}
+            onChange={handleChange}
+            name="isFriendly"
+        />
+        <label htmlFor="isFriendly">Are you friendly?</label>
+        <br />
+        <br />
+        
+        <fieldset>
+            <legend>Current employment status</legend>
+            
+            <input 
+                type="radio"
+                id="unemployed"
+                name="employment"
+                value="unemployed"
+                checked={formData.employment === "unemployed"}
+                onChange={handleChange}
+            />
+            <label htmlFor="unemployed">Unemployed</label>
+            <br />
+            
+            <input 
+                type="radio"
+                id="part-time"
+                name="employment"
+                value="part-time"
+                checked={formData.employment === "part-time"}
+                onChange={handleChange}
+            />
+            <label htmlFor="part-time">Part-time</label>
+            <br />
+            
+            <input 
+                type="radio"
+                id="full-time"
+                name="employment"
+                value="full-time"
+                checked={formData.employment === "full-time"}
+                onChange={handleChange}
+            />
+            <label htmlFor="full-time">Full-time</label>
+            <br />
+            
+        </fieldset>
     </form>
-  );
+)
 }
 //Conditional rendering thorouly done
 export default App;
