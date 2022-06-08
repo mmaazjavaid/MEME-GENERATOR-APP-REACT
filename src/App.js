@@ -11,10 +11,11 @@ function App() {
         email: "", 
         comments: "", 
         isFriendly: true,
-        employment: ""
+        employment: "",
+        favcolor:"",
+        gender:""
     }
 )
-console.log(formData.employment)
 
 function handleChange(event) {
     const {name, value, type, checked} = event.target
@@ -25,9 +26,13 @@ function handleChange(event) {
         }
     })
 }
+const handleSubmit=(event)=>{
+  event.preventDefault(); 
+  console.log(formData)
+}
 
 return (
-    <form>
+    <form onSubmit={handleSubmit}>
         <input
             type="text"
             placeholder="First Name"
@@ -103,6 +108,47 @@ return (
             <br />
             
         </fieldset>
+
+        <label htmlFor="favColor">What is your favorite color?</label>
+            <br />
+            <select 
+                id="favColor"
+                value={formData.favcolor}
+                onChange={handleChange}
+                name='favcolor'
+            >
+                <option value="">-- Choose --</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="indigo">Indigo</option>
+                <option value="violet">Violet</option>
+            </select>
+          <br/>
+          <br/>
+          <br/>
+            <label htmlFor="Male">Male</label>
+            <input 
+            id='Male'
+            type="radio"
+            value="Male"
+            checked={formData.gender==="Male"}
+            name='gender'
+            onChange={handleChange}
+            />
+            <label htmlFor="Female">Female</label>
+            <input
+            id='Female'
+            value="Female" 
+            type="radio"
+            checked={formData.gender==="Female"}
+            name='gender'
+            onChange={handleChange}
+            />
+
+            <button className='form--button'>Submit form</button>
     </form>
 )
 }

@@ -67,7 +67,7 @@ input, textarea {
   grid-column: 1 / -1;
   font-family: "Karla", sans-serif;
   border-radius: 5px;
-  
+  background-color: #672280;
   color: white;
   border: none;
   cursor: pointer;
