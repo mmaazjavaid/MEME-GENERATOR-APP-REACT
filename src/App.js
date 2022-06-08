@@ -31,18 +31,21 @@ function App() {
       placeholder="enter some input"
       name='firstname'
       onChange={handleChange} 
+      value={formdata.firstname}
         />
         <input
       type="text"
       name='lastname'
       placeholder="enter some input"
       onChange={handleChange} 
+      value={formdata.lastname}
         />
         <input
       type="email"
       name='email'
       placeholder="enter some input"
-      onChange={handleChange} 
+      onChange={handleChange}
+      value={formdata.email} 
         />
         
     </form>
