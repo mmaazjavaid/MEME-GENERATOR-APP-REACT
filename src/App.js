@@ -5,10 +5,16 @@ import './index.css';
 
 function App() {
   const [firstname,setfirstname]= useState("");
-  const handlechange=(event)=>{
+  const handlefirstnamechange=(event)=>{
     setfirstname(event.target.value)
-    console.log(firstname);
+    
   }
+  const [lastname,setlastname]= useState("");
+  const handlelastnamechange=(event)=>{
+    setlastname(event.target.value)
+    
+  }
+  console.log(firstname+" "+lastname);
   return (
     // <div className="App">
     //   <Header/>
@@ -18,7 +24,12 @@ function App() {
       <input
       type="text"
       placeholder="enter some input"
-      onChange={handlechange} 
+      onChange={handlefirstnamechange} 
+        />
+        <input
+      type="text"
+      placeholder="enter some input"
+      onChange={handlelastnamechange} 
         />
     </form>
   );
