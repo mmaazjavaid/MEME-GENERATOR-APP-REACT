@@ -4,17 +4,21 @@ import { useState } from 'react';
 import './index.css';
 
 function App() {
-  const [firstname,setfirstname]= useState("");
-  const handlefirstnamechange=(event)=>{
-    setfirstname(event.target.value)
+  const [formdata,setformdata]= useState({
+    firstname:"",
+    lastname:""
+  });
+  const handleChange=(event)=>{
+    setformdata(prevdata=>{
+      return{
+        ...prevdata,
+        [event.target.name]:event.target.value
+      }
+    })
     
   }
-  const [lastname,setlastname]= useState("");
-  const handlelastnamechange=(event)=>{
-    setlastname(event.target.value)
-    
-  }
-  console.log(firstname+" "+lastname);
+  console.log(formdata);
+  
   return (
     // <div className="App">
     //   <Header/>
@@ -24,12 +28,14 @@ function App() {
       <input
       type="text"
       placeholder="enter some input"
-      onChange={handlefirstnamechange} 
+      name='firstname'
+      onChange={handleChange} 
         />
         <input
       type="text"
+      name='lastname'
       placeholder="enter some input"
-      onChange={handlelastnamechange} 
+      onChange={handleChange} 
         />
     </form>
   );
