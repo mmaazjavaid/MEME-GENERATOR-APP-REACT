@@ -7,7 +7,8 @@ function App() {
   const [formdata,setformdata]= useState({
     firstname:"",
     lastname:"",
-    email:""
+    email:"",
+    comment:""
   });
   const handleChange=(event)=>{
     setformdata(prevdata=>{
@@ -47,7 +48,7 @@ function App() {
       onChange={handleChange}
       value={formdata.email} 
         />
-        
+        <textarea onChange={handleChange} name='comment' value={formdata.comment} />
     </form>
   );
 }
