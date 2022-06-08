@@ -6,7 +6,8 @@ import './index.css';
 function App() {
   const [formdata,setformdata]= useState({
     firstname:"",
-    lastname:""
+    lastname:"",
+    email:""
   });
   const handleChange=(event)=>{
     setformdata(prevdata=>{
@@ -37,6 +38,13 @@ function App() {
       placeholder="enter some input"
       onChange={handleChange} 
         />
+        <input
+      type="email"
+      name='email'
+      placeholder="enter some input"
+      onChange={handleChange} 
+        />
+        
     </form>
   );
 }
