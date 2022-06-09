@@ -11,10 +11,16 @@ export default function Meme() {
     })
     const [Memes,setMemes]=useState([]);
     useEffect(() => {
-        console.log("effect ran")
-        fetch("https://api.imgflip.com/get_memes")
-        .then(res=>res.json())
-        .then(data=>setMemes(data.data.memes))
+        async function fetchimages(){
+            const res=await fetch("https://api.imgflip.com/get_memes")
+            const data= await res.json()
+            setMemes(data.data.memes);
+        }
+        fetchimages();
+        return ()=>{
+            console.log("cleaning up")
+        }
+
     }, []);
     
     
