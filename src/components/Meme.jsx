@@ -1,6 +1,6 @@
 import React from "react"
 import { useState,useEffect } from "react"
-//lesson 57 done
+//Section 3 completed
 export default function Meme() {
     
      
