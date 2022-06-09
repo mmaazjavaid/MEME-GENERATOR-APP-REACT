@@ -1,156 +1,78 @@
-import Header from './components/Header';
-import Meme from './components/Meme';
-import { useState } from 'react';
-import './index.css';
+import Header from "./components/Header";
+import Meme from "./components/Meme";
+import { useState } from "react";
+import "./index.css";
 
 function App() {
-  const [formData, setFormData] = useState(
-    {
-        firstName: "", 
-        lastName: "", 
-        email: "", 
-        comments: "", 
-        isFriendly: true,
-        employment: "",
-        favcolor:"",
-        gender:""
-    }
-)
+  const [formdata, setformdata] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    isJoinedNewsletter: false,
+  });
 
-function handleChange(event) {
-    const {name, value, type, checked} = event.target
-    setFormData(prevFormData => {
-        return {
-            ...prevFormData,
-            [name]: type === "checkbox" ? checked : value
-        }
+  const handlechange = (e) => {
+    const {name,value,checked,type}=e.target;
+    setformdata(prevdata=>{
+      return{
+        ...prevdata,
+        [name]:type==="checkbox"? checked:value
+      }
     })
-}
-const handleSubmit=(event)=>{
-  event.preventDefault(); 
-  console.log(formData)
-}
+  };
 
-return (
-    <form onSubmit={handleSubmit}>
-        <input
-            type="text"
-            placeholder="First Name"
-            onChange={handleChange}
-            name="firstName"
-            value={formData.firstName}
-        />
-        <input
-            type="text"
-            placeholder="Last Name"
-            onChange={handleChange}
-            name="lastName"
-            value={formData.lastName}
-        />
-        <input
-            type="email"
-            placeholder="Email"
-            onChange={handleChange}
-            name="email"
-            value={formData.email}
-        />
-        <textarea 
-            value={formData.comments}
-            placeholder="Comments"
-            onChange={handleChange}
-            name="comments"
-        />
-        <input 
-            type="checkbox" 
-            id="isFriendly" 
-            checked={formData.isFriendly}
-            onChange={handleChange}
-            name="isFriendly"
-        />
-        <label htmlFor="isFriendly">Are you friendly?</label>
-        <br />
-        <br />
-        
-        <fieldset>
-            <legend>Current employment status</legend>
-            
-            <input 
-                type="radio"
-                id="unemployed"
-                name="employment"
-                value="unemployed"
-                checked={formData.employment === "unemployed"}
-                onChange={handleChange}
-            />
-            <label htmlFor="unemployed">Unemployed</label>
-            <br />
-            
-            <input 
-                type="radio"
-                id="part-time"
-                name="employment"
-                value="part-time"
-                checked={formData.employment === "part-time"}
-                onChange={handleChange}
-            />
-            <label htmlFor="part-time">Part-time</label>
-            <br />
-            
-            <input 
-                type="radio"
-                id="full-time"
-                name="employment"
-                value="full-time"
-                checked={formData.employment === "full-time"}
-                onChange={handleChange}
-            />
-            <label htmlFor="full-time">Full-time</label>
-            <br />
-            
-        </fieldset>
 
-        <label htmlFor="favColor">What is your favorite color?</label>
-            <br />
-            <select 
-                id="favColor"
-                value={formData.favcolor}
-                onChange={handleChange}
-                name='favcolor'
-            >
-                <option value="">-- Choose --</option>
-                <option value="red">Red</option>
-                <option value="orange">Orange</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-                <option value="indigo">Indigo</option>
-                <option value="violet">Violet</option>
-            </select>
-          <br/>
-          <br/>
-          <br/>
-            <label htmlFor="Male">Male</label>
-            <input 
-            id='Male'
-            type="radio"
-            value="Male"
-            checked={formData.gender==="Male"}
-            name='gender'
-            onChange={handleChange}
-            />
-            <label htmlFor="Female">Female</label>
-            <input
-            id='Female'
-            value="Female" 
-            type="radio"
-            checked={formData.gender==="Female"}
-            name='gender'
-            onChange={handleChange}
-            />
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(formdata.password===formdata.confirmPassword){
+      console.log("signed up successfully")
+      if(formdata.isJoinedNewsletter===true){
+        console.log("Thanks for signing up to our newsletter")
+      }
+    }else{
+      console.log("passwords does not match")
+    }
+    
+  };
 
-            <button className='form--button'>Submit form</button>
-    </form>
-)
+  return (
+    <div className="form-container">
+      <form className="form" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email address"
+          className="form--input"
+          name="email"
+          onChange={handlechange}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="form--input"
+          name="password"
+          onChange={handlechange}
+        />
+        <input
+          type="password"
+          placeholder="Confirm password"
+          className="form--input"
+          name="confirmPassword"
+          onChange={handlechange}
+        />
+
+        <div className="form--marketing">
+          <input 
+          id="okayToEmail"
+          type="checkbox"
+          name="isJoinedNewsletter"
+          checked={formdata.isJoinedNewsletter} 
+          onChange={handlechange} />
+          <label htmlFor="okayToEmail">I want to join the newsletter</label>
+        </div>
+        <button className="form--submit">Sign up</button>
+      </form>
+    </div>
+  );
 }
 //Conditional rendering thorouly done
 export default App;
