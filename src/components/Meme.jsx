@@ -1,5 +1,4 @@
 import React from "react"
-import memesData from "../memesData.js"
 import { useState,useEffect } from "react"
 //lesson 57 done
 export default function Meme() {
